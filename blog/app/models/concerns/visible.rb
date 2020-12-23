@@ -1,10 +1,10 @@
 module Visible
   extend ActiveSupport::Concern
 
-  VALID_STATUSES = ['public', 'private', 'archived']
-
+  
   included do
-    validates :status, with: VALID_STATUSES
+    VALID_STATUSES = ['public', 'private', 'archived']
+    validates :status, inclusion: { in: VALID_STATUSES}
   end
 
   class_methods do
@@ -19,3 +19,4 @@ module Visible
     status == 'archived'
   end
 end
+
